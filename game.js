@@ -73,7 +73,7 @@ let game = {
     },
     collideBlocks() {
         for (let block of this.blocks) {
-            if (this.ball.active && this.ball.collide(block)) {
+            if (block.active && this.ball.collide(block)) {
                 this.ball.bumpBlock(block);
             }
         }
@@ -179,7 +179,7 @@ game.ball = {
     },
     bumpPlatform(platform) {
         if (this.dy > 0) {
-            this.dy *= -this.velocity;
+            this.dy = -this.velocity;
             let touchX = this.x + this.width / 2;
             this.dx = this.velocity * platform.getTouchOffset(touchX)
         }
