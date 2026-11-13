@@ -10,7 +10,7 @@ let game = {
     platform: null,
     ball: null,
     blocks: [],
-    scrore: 0,
+    score: 0,
     rows: 4,
     cols: 8,
     width: 640,
