@@ -65,15 +65,15 @@ let game = {
         }
     },
     update() {
-        this.platform.move();
-        this.ball.move();
-        this.ball.collideWorldBounds();
         this.collideBlocks();
         this.collidePlatform();
+        this.ball.collideWorldBounds();
+        this.platform.move();
+        this.ball.move();
     },
     collideBlocks() {
         for (let block of this.blocks) {
-            if (this.ball.collide && this.ball.collide(block)) {
+            if (this.ball.active && this.ball.collide(block)) {
                 this.ball.bumpBlock(block);
             }
         }
@@ -179,7 +179,7 @@ game.ball = {
     },
     bumpPlatform(platform) {
         if (this.dy > 0) {
-            this.dy *= -1;
+            this.dy *= -this.velocity;
             let touchX = this.x + this.width / 2;
             this.dx = this.velocity * platform.getTouchOffset(touchX)
         }
